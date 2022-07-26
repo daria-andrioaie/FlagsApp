@@ -9,8 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                FlagView()
+                ControlsView()
+            }
+            .toolbar {
+                Button("Save Flag", action: saveFlag)
+                    .frame(width: 115, height: 40, alignment: .center)
+                    .font(.body.weight(.bold))
+                    .foregroundColor(Color("MermaidBlue"))
+                    .background(Color("LightGray"))
+                    .cornerRadius(5)
+            }
+        }
+    }
+    
+    func saveFlag() {
+        
     }
 }
 

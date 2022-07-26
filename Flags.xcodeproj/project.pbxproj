@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */; };
 		B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */; };
+		B845FC51288FE35400D9A2F8 /* FlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC50288FE35400D9A2F8 /* FlagView.swift */; };
+		B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC52288FE36500D9A2F8 /* ControlsView.swift */; };
 		B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89163FB288EC8BD009BF7A0 /* NorwayView.swift */; };
 		B8E6D428288EB950007561CF /* FlagsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6D427288EB950007561CF /* FlagsApp.swift */; };
 		B8E6D42A288EB950007561CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6D429288EB950007561CF /* ContentView.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayFlagAbsolute.swift; sourceTree = "<group>"; };
 		B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitzerlandFlag.swift; sourceTree = "<group>"; };
+		B845FC50288FE35400D9A2F8 /* FlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagView.swift; sourceTree = "<group>"; };
+		B845FC52288FE36500D9A2F8 /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
 		B89163FB288EC8BD009BF7A0 /* NorwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayView.swift; sourceTree = "<group>"; };
 		B8E6D424288EB950007561CF /* Flags.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flags.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E6D427288EB950007561CF /* FlagsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagsApp.swift; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 			children = (
 				B8E6D427288EB950007561CF /* FlagsApp.swift */,
 				B8E6D429288EB950007561CF /* ContentView.swift */,
+				B845FC50288FE35400D9A2F8 /* FlagView.swift */,
+				B845FC52288FE36500D9A2F8 /* ControlsView.swift */,
 				B8E6D435288EBDA9007561CF /* FinlandView.swift */,
 				B89163FB288EC8BD009BF7A0 /* NorwayView.swift */,
 				B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */,
@@ -153,7 +159,9 @@
 				B8E6D42A288EB950007561CF /* ContentView.swift in Sources */,
 				B8E6D428288EB950007561CF /* FlagsApp.swift in Sources */,
 				B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */,
+				B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */,
 				B8E6D436288EBDAA007561CF /* FinlandView.swift in Sources */,
+				B845FC51288FE35400D9A2F8 /* FlagView.swift in Sources */,
 				B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

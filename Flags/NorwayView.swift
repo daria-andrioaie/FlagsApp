@@ -7,65 +7,66 @@
 
 import SwiftUI
 
-struct RedVerticalStripe: View {
+struct RedWhiteBlueVerticalStripe: View {
     var body: some View {
         VStack(spacing: 0) {
-            Color("WineRed")
-                .frame(height: 60)
-            WhiteBlueWhiteHorizontalStripe()
-            Color("WineRed")
-                .frame(height: 60)
+            ForEach(0..<6) { _ in
+                Color("WineRed")
+            }
+            Color.white
+            ForEach(0..<2) { _ in
+                Color("NavyBlue")
+            }
+            Color.white
+            ForEach(0..<6) { _ in
+                Color("WineRed")
+            }
         }
     }
 }
 
-struct WhiteBlueVerticalStripe: View {
+struct WhiteBlueWhiteVerticalStripe: View {
     var body: some View {
-        VStack(spacing: 0){
-            HStack(spacing: 0) {
+        VStack(spacing: 0) {
+            ForEach(0..<7) { _ in
                 Color.white
-                    .frame(width: 10)
-                Color("NavyBlue")
-                    .frame(width: 20)
-                Color.white
-                    .frame(width: 10)
             }
-            Color("NavyBlue")
-                .frame(height: 20)
-            HStack(spacing: 0) {
-                Color.white
-                    .frame(width: 10)
+            ForEach(0..<2) { _ in
                 Color("NavyBlue")
-                    .frame(width: 20)
+            }
+            ForEach(0..<7) { _ in
                 Color.white
-                    .frame(width: 10)
             }
         }
-            
     }
 }
 
-struct WhiteBlueWhiteHorizontalStripe: View {
+struct BlueVerticalStripe: View {
     var body: some View {
-        Color.white
-            .frame(height: 10)
         Color("NavyBlue")
-            .frame(height: 20)
-        Color.white
-            .frame(height: 10)
     }
 }
 
 struct NorwayView: View {
+    var paddingValue = 20.0
+    var aspectRatio: Double = 11/8
+    
     var body: some View {
         HStack(spacing: 0) {
-            RedVerticalStripe()
-                .frame(width: 60)
-            WhiteBlueVerticalStripe()
-            RedVerticalStripe()
-                .frame(width: 120)
+            ForEach(0..<6) { _ in
+                RedWhiteBlueVerticalStripe()
+            }
+            WhiteBlueWhiteVerticalStripe()
+            ForEach(0..<2) { _ in
+                BlueVerticalStripe()
+            }
+            WhiteBlueWhiteVerticalStripe()
+            ForEach(0..<12) { _ in
+                RedWhiteBlueVerticalStripe()
+            }
         }
-        .frame(width: 220, height: 160)
+        .aspectRatio(aspectRatio, contentMode: .fit)
+        .padding(paddingValue)
     }
 }
 

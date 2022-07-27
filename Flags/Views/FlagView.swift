@@ -56,11 +56,13 @@ struct Flag: FlagComponent, View {
 }
 
 struct FlagView: View {
+    var flag = Flag(type: .vertical, components: [])
     var body: some View {
         RoundedRectangle(cornerRadius: 3)
             .fill(Color("LightGray"))
             .frame(width: 250, height: 150)
             .padding(30)
+        
     }
     
     func saveFlag() {

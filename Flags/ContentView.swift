@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var flagViewModel: FlagViewModel
+    
     var body: some View {
         NavigationView {
             VStack {
-                FlagView()
-                ControlsView()
+                FlagView(flagViewModel: $flagViewModel)
+                ControlsView(flagViewModel: $flagViewModel)
             }
             .toolbar {
                 Button("Save Flag", action: saveFlag)
@@ -32,6 +34,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(flagViewModel: FlagViewModel())
     }
 }

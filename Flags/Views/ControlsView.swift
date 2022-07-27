@@ -44,6 +44,9 @@ extension View {
 }
 
 struct ControlsView: View {
+    @Binding var flagViewModel: FlagViewModel
+    @State private var currentColor: Color = .white
+    
     var body: some View {
         ZStack {
             Color("LightGray")
@@ -51,14 +54,18 @@ struct ControlsView: View {
                 HStack(spacing: 40) {
                     VStack {
                         Text("Pick color")
-        
-                        Button {
-                            pickColor()
-                        } label: {
-                            Image(systemName: "paintbrush.pointed.fill")
-                                .renderingMode(.original)
-                                .foregroundColor(.black)
-                        }
+                        ColorPicker("Pick color", selection: $currentColor)
+                            .labelsHidden()
+                            .scaleEffect(CGSize(width: 0.7, height: 0.7))
+                            .frame(height: 5)
+                        
+//                        Button {
+//                            pickColor()
+//                        } label: {
+//                            Image(systemName: "paintbrush.pointed.fill")
+//                                .renderingMode(.original)
+//                                .foregroundColor(.black)
+//                        }
                     }
                     VStack {
                         Text("Pick emblem")
@@ -78,21 +85,26 @@ struct ControlsView: View {
                 Button("Add Stripe", action: addStripe)
                     .FlagsButtonStyle(backgroundColor: "MermaidBlue")
                     
-                HStack(spacing: 70) {
-                    Button {
-                        addVerticalSubsection()
-                    } label: {
-                        Image("vertical")
-                            .resizable()
-                            .frame(width: 35, height: 35)
-                    }
-                    
-                    Button {
-                        addHorizontalSubsection()
-                    } label: {
-                        Image("horizontal")
-                            .resizable()
-                            .frame(width: 35, height: 35)
+                VStack {
+                    Text("Add subsection")
+                        .textCase(.uppercase)
+                        .font(.subheadline.weight(.bold))
+                        .foregroundColor(Color("MermaidBlue"))
+                    HStack(spacing: 70) {
+                        Button {
+                            addVerticalSubsection()
+                        } label: {
+                            Image("vertical")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                        }
+                        Button {
+                            addHorizontalSubsection()
+                        } label: {
+                            Image("horizontal")
+                                .resizable()
+                                .frame(width: 35, height: 35)
+                        }
                     }
                 }
                 .FlagsFrameStyle()
@@ -133,6 +145,6 @@ struct ControlsView: View {
 
 struct ControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlsView()
+        ControlsView(flagViewModel: FlagViewModel())
     }
 }

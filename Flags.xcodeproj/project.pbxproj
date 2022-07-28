@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */; };
 		B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */; };
-		B845FC51288FE35400D9A2F8 /* FlagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC50288FE35400D9A2F8 /* FlagView.swift */; };
+		B845FC51288FE35400D9A2F8 /* FlagContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */; };
 		B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC52288FE36500D9A2F8 /* ControlsView.swift */; };
 		B88DC05D2891682E00FDB689 /* FlagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88DC05C2891682E00FDB689 /* FlagViewModel.swift */; };
 		B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89163FB288EC8BD009BF7A0 /* NorwayView.swift */; };
@@ -24,7 +24,7 @@
 /* Begin PBXFileReference section */
 		B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayFlagAbsolute.swift; sourceTree = "<group>"; };
 		B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitzerlandFlag.swift; sourceTree = "<group>"; };
-		B845FC50288FE35400D9A2F8 /* FlagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagView.swift; sourceTree = "<group>"; };
+		B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagContainerView.swift; sourceTree = "<group>"; };
 		B845FC52288FE36500D9A2F8 /* ControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsView.swift; sourceTree = "<group>"; };
 		B88DC05C2891682E00FDB689 /* FlagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagViewModel.swift; sourceTree = "<group>"; };
 		B89163FB288EC8BD009BF7A0 /* NorwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayView.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		B8F4ECC728911641004CA6E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B845FC50288FE35400D9A2F8 /* FlagView.swift */,
+				B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */,
 				B845FC52288FE36500D9A2F8 /* ControlsView.swift */,
 			);
 			path = Views;
@@ -201,7 +201,7 @@
 				B8F4ECC628911622004CA6E6 /* FlagDataModel.swift in Sources */,
 				B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */,
 				B8E6D436288EBDAA007561CF /* FinlandView.swift in Sources */,
-				B845FC51288FE35400D9A2F8 /* FlagView.swift in Sources */,
+				B845FC51288FE35400D9A2F8 /* FlagContainerView.swift in Sources */,
 				B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

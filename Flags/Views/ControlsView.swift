@@ -44,7 +44,7 @@ extension View {
 }
 
 struct ControlsView: View {
-    @Binding var flagViewModel: FlagViewModel
+    @ObservedObject var flagViewModel: FlagViewModel
     @State private var currentColor: Color = .white
     
     var body: some View {

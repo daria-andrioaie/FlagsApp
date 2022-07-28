@@ -31,30 +31,30 @@ import SwiftUI
 //    }
 //}
 
-protocol FlagComponent {
-}
-
-class SimpleStripe: FlagComponent {
-    let color: Color
-    
-    init(color: Color) {
-        self.color = color
-    }
-}
-
-enum FlagType {
-    case vertical
-    case horizontal
-}
-
-class FlagModel: FlagComponent {
-    var components: [FlagComponent] = []
-    let type: FlagType = .horizontal
-    
-    func add(flagComponent: FlagComponent) {
-        components.append(flagComponent)
-    }
-    
-    
-}
+//protocol FlagComponent {
+//}
+//
+//class SimpleStripe: FlagComponent {
+//    let color: Color
+//
+//    init(color: Color) {
+//        self.color = color
+//    }
+//}
+//
+//enum FlagType {
+//    case vertical
+//    case horizontal
+//}
+//
+//class FlagModel: FlagComponent {
+//    var components: [FlagComponent] = []
+//    let type: FlagType = .horizontal
+//
+//    func add(flagComponent: FlagComponent) {
+//        components.append(flagComponent)
+//    }
+//
+//
+//}
 

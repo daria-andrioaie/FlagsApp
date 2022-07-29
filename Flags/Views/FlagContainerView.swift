@@ -25,13 +25,13 @@ struct FlagView: View {
     var body: some View {
         switch flagModel.type {
         case .vertical:
-            VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 ForEach(0..<flagModel.components.count, id: \.self) { index in
                     flagModel.components[index]
                 }
             }
         case .horizontal:
-            HStack(spacing: 0) {
+            VStack(spacing: 0) {
                 ForEach(0..<flagModel.components.count, id: \.self) { index in
                     flagModel.components[index]
                 }

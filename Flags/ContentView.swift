@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 //    @StateObject var mainFlagViewModel = FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green))], type: .vertical)))], type: .horizontal)
     
-    @StateObject var mainFlagViewModel = FlagViewModel(components: [], type: .horizontal)
+    @StateObject var mainFlagViewModel = FlagViewModel(components: [], type: .vertical)
     
     var body: some View {
         NavigationView {

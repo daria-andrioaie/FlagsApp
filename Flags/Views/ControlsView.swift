@@ -45,6 +45,7 @@ extension View {
 
 struct ControlsView: View {
     @ObservedObject var mainFlagViewModel: FlagViewModel
+    @State var currentFlagViewModel: FlagViewModel?
     @State private var currentColor: Color = .white
     
     var body: some View {
@@ -111,23 +112,47 @@ struct ControlsView: View {
     }
     
     func addStripe() {
-        mainFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
+        guard let currentFlagViewModel = currentFlagViewModel else {
+            mainFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
+            print("Added a stripe in the main flag")
+            print("\(mainFlagViewModel.components)")
+            return
+        }
+        currentFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
+        print("Added a stripe in the flag \(currentFlagViewModel)")
+        print("\(currentFlagViewModel.components)")
     }
     
     func addVerticalSubsection() {
-        
+        guard var currentFlagViewModel = currentFlagViewModel else {
+            currentFlagViewModel = FlagViewModel(components: [], type: .vertical)
+            mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
+            print("Added a vertical section in the main flag")
+            return
+        }
+
+        var newFlagViewModel = FlagViewModel(components: [], type: .vertical)
+        currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
+        currentFlagViewModel = newFlagViewModel
+        print("Added a vertical section in the inner-most flag")
     }
     
     func addHorizontalSubsection() {
-        
+        guard var currentFlagViewModel = currentFlagViewModel else {
+            currentFlagViewModel = FlagViewModel(components: [], type: .horizontal)
+            mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
+            print("Added a horizontal section in the main flag")
+            return
+        }
+
+        var newFlagViewModel = FlagViewModel(components: [], type: .horizontal)
+        currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
+        currentFlagViewModel = newFlagViewModel
+        print("Added a horizontal section in the inner-most flag")
     }
     
     func commitSection() {
-        
-    }
-    
-    func pickColor() {
-        
+        currentFlagViewModel = nil
     }
     
     func pickEmblem() {

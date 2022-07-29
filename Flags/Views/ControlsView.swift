@@ -44,7 +44,7 @@ extension View {
 }
 
 struct ControlsView: View {
-    @ObservedObject var flagViewModel: FlagViewModel
+    @ObservedObject var mainFlagViewModel: FlagViewModel
     @State private var currentColor: Color = .white
     
     var body: some View {
@@ -58,14 +58,6 @@ struct ControlsView: View {
                             .labelsHidden()
                             .scaleEffect(CGSize(width: 0.7, height: 0.7))
                             .frame(height: 5)
-                        
-//                        Button {
-//                            pickColor()
-//                        } label: {
-//                            Image(systemName: "paintbrush.pointed.fill")
-//                                .renderingMode(.original)
-//                                .foregroundColor(.black)
-//                        }
                     }
                     VStack {
                         Text("Pick emblem")
@@ -119,7 +111,7 @@ struct ControlsView: View {
     }
     
     func addStripe() {
-        
+        mainFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
     }
     
     func addVerticalSubsection() {
@@ -145,6 +137,6 @@ struct ControlsView: View {
 
 struct ControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlsView(flagViewModel: FlagViewModel())
+        ControlsView(mainFlagViewModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green))], type: .vertical)))], type: .horizontal))
     }
 }

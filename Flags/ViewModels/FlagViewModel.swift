@@ -18,10 +18,17 @@ class FlagViewModel: ObservableObject {
 //    var type: FlagType = .horizontal
     @Published var components: [AnyView]
     var type: FlagType
+    var parent: FlagViewModel?
     
     init(components: [AnyView], type: FlagType) {
         self.components = components
         self.type = type
+    }
+    
+    init(components: [AnyView], type: FlagType, parent: FlagViewModel) {
+        self.components = components
+        self.type = type
+        self.parent = parent
     }
     
     func add(flagComponent: AnyView) {

@@ -60,6 +60,6 @@ struct FlagContainerView: View {
 
 struct FlagView_Previews: PreviewProvider {
     static var previews: some View {
-        FlagContainerView(mainFlagViewModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green))], type: .vertical)))], type: .horizontal))
+        FlagContainerView(mainFlagViewModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .orange)), AnyView(SimpleStripe(color: .pink))], type: .horizontal)))], type: .vertical)))], type: .horizontal))
     }
 }

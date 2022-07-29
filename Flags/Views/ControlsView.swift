@@ -114,45 +114,51 @@ struct ControlsView: View {
     func addStripe() {
         guard let currentFlagViewModel = currentFlagViewModel else {
             mainFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
-            print("Added a stripe in the main flag")
-            print("\(mainFlagViewModel.components)")
             return
         }
         currentFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
-        print("Added a stripe in the flag \(currentFlagViewModel)")
-        print("\(currentFlagViewModel.components)")
     }
     
     func addVerticalSubsection() {
-        guard var currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .vertical)
+        if mainFlagViewModel.components.isEmpty {
+            mainFlagViewModel.type = .vertical
+            return
+        }
+        
+        guard let currentFlagViewModel = currentFlagViewModel else {
+            currentFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: mainFlagViewModel)
             mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
-            print("Added a vertical section in the main flag")
             return
         }
 
-        var newFlagViewModel = FlagViewModel(components: [], type: .vertical)
+        let newFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: currentFlagViewModel)
         currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
-        currentFlagViewModel = newFlagViewModel
-        print("Added a vertical section in the inner-most flag")
+        self.currentFlagViewModel = newFlagViewModel
     }
     
     func addHorizontalSubsection() {
-        guard var currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .horizontal)
+        if mainFlagViewModel.components.isEmpty {
+            mainFlagViewModel.type = .horizontal
+            return
+        }
+        
+        guard let currentFlagViewModel = currentFlagViewModel else {
+            currentFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: mainFlagViewModel)
             mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
-            print("Added a horizontal section in the main flag")
             return
         }
 
-        var newFlagViewModel = FlagViewModel(components: [], type: .horizontal)
+        let newFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: currentFlagViewModel)
         currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
-        currentFlagViewModel = newFlagViewModel
-        print("Added a horizontal section in the inner-most flag")
+        self.currentFlagViewModel = newFlagViewModel
     }
     
     func commitSection() {
-        currentFlagViewModel = nil
+        //currentFlagViewModel = nil
+        guard let currentFlagViewModel = currentFlagViewModel else {
+            return
+        }
+        self.currentFlagViewModel = currentFlagViewModel.parent
     }
     
     func pickEmblem() {

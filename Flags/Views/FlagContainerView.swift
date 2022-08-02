@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ComponentView: View {
-    let component: Component
+    @ObservedObject var component: Component
     var body: some View {
         if component is SimpleStripeComponent {
             let stripeComponent = component as! SimpleStripeComponent

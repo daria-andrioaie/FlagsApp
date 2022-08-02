@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ComponentView: View {
-    @ObservedObject var component: Component
+    var component: Component
     var body: some View {
         if component is SimpleStripeComponent {
             let stripeComponent = component as! SimpleStripeComponent
@@ -43,7 +43,8 @@ struct FlagView: View {
     
     var body: some View {
         print("In the flag view: \(flagViewModel.components)")
-        return ComponentView(component: flagViewModel)
+        let newFlagViewModel = flagViewModel.deepCopy()
+        return ComponentView(component: newFlagViewModel)
     }
 }
 

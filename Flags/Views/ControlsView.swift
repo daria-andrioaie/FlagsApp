@@ -128,6 +128,7 @@ struct ControlsView: View {
             return
         }
         currentFlagViewModel.add(flagComponent: newStripe)
+        print("In the inner flag: \(currentFlagViewModel.components)")
     }
     
     func addVerticalSubsection() {
@@ -137,8 +138,8 @@ struct ControlsView: View {
         }
         
         guard let currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
+            self.currentFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: mainFlagViewModel)
+            mainFlagViewModel.add(flagComponent: self.currentFlagViewModel!)
             return
         }
 
@@ -154,8 +155,8 @@ struct ControlsView: View {
         }
         
         guard let currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
+            self.currentFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: mainFlagViewModel)
+            mainFlagViewModel.add(flagComponent: self.currentFlagViewModel!)
             return
         }
 

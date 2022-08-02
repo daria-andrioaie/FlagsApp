@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B80260A22898F85200F02BC4 /* FlagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80260A12898F85200F02BC4 /* FlagModel.swift */; };
 		B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */; };
 		B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */; };
 		B845FC51288FE35400D9A2F8 /* FlagContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B80260A12898F85200F02BC4 /* FlagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagModel.swift; sourceTree = "<group>"; };
 		B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayFlagAbsolute.swift; sourceTree = "<group>"; };
 		B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitzerlandFlag.swift; sourceTree = "<group>"; };
 		B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagContainerView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B80260A02898F83500F02BC4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B80260A12898F85200F02BC4 /* FlagModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B88DC05B2891675000FDB689 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 		B8E6D426288EB950007561CF /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				B80260A02898F83500F02BC4 /* Models */,
 				B88DC05B2891675000FDB689 /* ViewModels */,
 				B8F4ECC728911641004CA6E6 /* Views */,
 				B8F4ECC3289115CD004CA6E6 /* Hand-drawn flags */,
@@ -185,6 +196,7 @@
 				B88DC05D2891682E00FDB689 /* FlagViewModel.swift in Sources */,
 				B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */,
 				B8E6D42A288EB950007561CF /* ContentView.swift in Sources */,
+				B80260A22898F85200F02BC4 /* FlagModel.swift in Sources */,
 				B8E6D428288EB950007561CF /* FlagsApp.swift in Sources */,
 				B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */,
 				B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */,

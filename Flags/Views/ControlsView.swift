@@ -47,6 +47,7 @@ struct ControlsView: View {
     @ObservedObject var mainFlagViewModel: FlagViewModel
     @State var currentFlagViewModel: FlagViewModel?
     @State private var currentColor: Color = .white
+    @State private var currentSymbol: Image?
     
     var body: some View {
         ZStack {
@@ -62,15 +63,11 @@ struct ControlsView: View {
                     }
                     VStack {
                         Text("Pick emblem")
-                        Button {
-                            pickEmblem()
-                        } label: {
+                        Button { } label: {
                             Image(systemName: "star.circle")
                                 .foregroundColor(.black)
                         }
                     }
-                    
-                    
                 }
                 .FlagsFrameStyle()
                 
@@ -112,11 +109,25 @@ struct ControlsView: View {
     }
     
     func addStripe() {
+        var newStripe: Component
+//        // if there is an emblem selected
+//        if let currentSymbol = currentSymbol {
+//            newStripe = AnyView(ZStack {
+//                SimpleStripe(color: currentColor)
+//                currentSymbol
+//            })
+//        }
+//        else {
+//            newStripe = SimpleStripeComponent(color: currentColor)
+//        }
+        
+        newStripe = SimpleStripeComponent(color: currentColor)
+
         guard let currentFlagViewModel = currentFlagViewModel else {
-            mainFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
+            mainFlagViewModel.add(flagComponent: newStripe)
             return
         }
-        currentFlagViewModel.add(flagComponent: AnyView(SimpleStripe(color: currentColor)))
+        currentFlagViewModel.add(flagComponent: newStripe)
     }
     
     func addVerticalSubsection() {
@@ -127,12 +138,12 @@ struct ControlsView: View {
         
         guard let currentFlagViewModel = currentFlagViewModel else {
             currentFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
+            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
             return
         }
 
         let newFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: currentFlagViewModel)
-        currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
+        currentFlagViewModel.add(flagComponent: newFlagViewModel)
         self.currentFlagViewModel = newFlagViewModel
     }
     
@@ -144,12 +155,12 @@ struct ControlsView: View {
         
         guard let currentFlagViewModel = currentFlagViewModel else {
             currentFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: currentFlagViewModel!)))
+            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
             return
         }
 
         let newFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: currentFlagViewModel)
-        currentFlagViewModel.add(flagComponent: AnyView(FlagView(flagModel: newFlagViewModel)))
+        currentFlagViewModel.add(flagComponent: newFlagViewModel)
         self.currentFlagViewModel = newFlagViewModel
     }
     
@@ -160,14 +171,10 @@ struct ControlsView: View {
         }
         self.currentFlagViewModel = currentFlagViewModel.parent
     }
-    
-    func pickEmblem() {
-        
-    }
 }
 
 struct ControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlsView(mainFlagViewModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green))], type: .vertical)))], type: .horizontal))
+        ControlsView(mainFlagViewModel: FlagViewModel(components: [SimpleStripeComponent(color: .red), SimpleStripeComponent(color: .blue), FlagViewModel(components: [SimpleStripeComponent(color: .orange), SimpleStripeComponent(color: .green)], type: .vertical)], type: .horizontal))
     }
 }

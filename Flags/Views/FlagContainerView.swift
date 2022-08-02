@@ -7,46 +7,51 @@
 
 import SwiftUI
 
-struct SimpleStripe: View {
-    let color: Color
-    
-    init(color: Color) {
-        self.color = color
-    }
-    
+struct ComponentView: View {
+    let component: Component
     var body: some View {
-        color
+        if component is SimpleStripeComponent {
+            let stripeComponent = component as! SimpleStripeComponent
+            return AnyView(stripeComponent.color)
+        }
+        else if component is FlagViewModel {
+//        else {
+            let flag = component as! FlagViewModel
+            switch flag.type {
+            case .vertical:
+                return AnyView(HStack(spacing: 0) {
+                    ForEach(0..<flag.components.count, id: \.self) { index in
+                        ComponentView(component: flag.components[index])
+                    }
+                })
+            case .horizontal:
+                return AnyView(VStack(spacing: 0) {
+                    ForEach(0..<flag.components.count, id: \.self) { index in
+                        ComponentView(component: flag.components[index])
+                    }
+                })
+            }
+        }
+        else {
+            return AnyView(Color.red)
+        }
     }
 }
 
 struct FlagView: View {
-    @ObservedObject var flagModel: FlagViewModel
+    @ObservedObject var flagViewModel: FlagViewModel
     
     var body: some View {
-        switch flagModel.type {
-        case .vertical:
-            HStack(spacing: 0) {
-                ForEach(0..<flagModel.components.count, id: \.self) { index in
-                    flagModel.components[index]
-                }
-            }
-        case .horizontal:
-            VStack(spacing: 0) {
-                ForEach(0..<flagModel.components.count, id: \.self) { index in
-                    flagModel.components[index]
-                }
-            }
-        }
-            
+        print("In the flag view: \(flagViewModel.components)")
+        return ComponentView(component: flagViewModel)
     }
 }
-
 
 struct FlagContainerView: View {
     @ObservedObject var mainFlagViewModel: FlagViewModel
     
     var body: some View {
-        FlagView(flagModel: mainFlagViewModel)
+        FlagView(flagViewModel: mainFlagViewModel)
             .cornerRadius(5)
             .frame(width: 250, height: 150)
             .background(Color("LightGray"))
@@ -60,6 +65,6 @@ struct FlagContainerView: View {
 
 struct FlagView_Previews: PreviewProvider {
     static var previews: some View {
-        FlagContainerView(mainFlagViewModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .orange)), AnyView(SimpleStripe(color: .pink))], type: .horizontal)))], type: .vertical)))], type: .horizontal))
+        FlagContainerView(mainFlagViewModel: FlagViewModel(components: [SimpleStripeComponent(color: .red), SimpleStripeComponent(color: .blue), FlagViewModel(components: [SimpleStripeComponent(color: .yellow), SimpleStripeComponent(color: .green), FlagViewModel(components: [SimpleStripeComponent(color: .orange), SimpleStripeComponent(color: .pink)], type: .horizontal)], type: .vertical)], type: .horizontal))
     }
 }

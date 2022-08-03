@@ -8,42 +8,98 @@
 import Foundation
 import SwiftUI
 
-enum FlagType {
-    case vertical
-    case horizontal
-}
 
-protocol Component: ObservableObject {
+class FlagViewModel: ObservableObject {
+    @Published var flagDataModel: FlagDataModel
+    @Published var currentColor: Color = .white
+    @Published var currentSymbol: Image?
     
-}
-
-class SimpleStripeComponent: Component {
-    let color: Color
-    
-    init(color: Color) {
-        self.color = color
-    }
-}
-
-class FlagViewModel<C>: Component {
-//    var components: [AnyView] = [AnyView(SimpleStripe(color: .red)), AnyView(SimpleStripe(color: .blue)), AnyView(FlagView(flagModel: FlagViewModel(components: [AnyView(SimpleStripe(color: .yellow)), AnyView(SimpleStripe(color: .green))], type: .vertical)))]
-//    var type: FlagType = .horizontal
-    @Published var components: [C]
-    var type: FlagType
-    var parent: FlagViewModel?
-    
-    init(components: [C], type: FlagType) {
-        self.components = components
-        self.type = type
+    init(flagModel: FlagDataModel) {
+        self.flagDataModel = flagModel
     }
     
-    init(components: [C], type: FlagType, parent: FlagViewModel) {
-        self.components = components
-        self.type = type
-        self.parent = parent
+    @ViewBuilder
+    func getComponentView(component: Component) -> some View {
+        if let stripeComponent = component as? SimpleStripeComponent {
+            AnyView(stripeComponent.color)
+        }
+        else if let flag = component as? Flag {
+            switch flag.orientation {
+            case .vertical:
+                AnyView(HStack(spacing: 0) {
+                    ForEach(0..<flag.components.count, id: \.self) { index in
+                        self.getComponentView(component: flag.components[index])
+                    }
+                })
+            case .horizontal:
+                AnyView(VStack(spacing: 0) {
+                    ForEach(0..<flag.components.count, id: \.self) { index in
+                        self.getComponentView(component: flag.components[index])
+                    }
+                })
+            }
+        }
+        Text("")
     }
     
-    func add(flagComponent: C) {
-        components.append(flagComponent)
+    @ViewBuilder
+    func getView() -> some View {
+        getComponentView(component: flagDataModel.rootFlag)
+    }
+    
+    func addStripe() {
+        let newStripe = SimpleStripeComponent(color: currentColor)
+
+        guard let currentFlag = flagDataModel.currentFlag else {
+            flagDataModel.addComponentToRoot(newStripe)
+            objectWillChange.send()
+            return
+        }
+        currentFlag.addComponent(newStripe)
+        objectWillChange.send()
+    }
+    
+    func addVerticalSubsection() {
+        if flagDataModel.isEmpty() {
+            flagDataModel.setOrientation(.vertical)
+            return
+        }
+        
+        guard let currentFlag = flagDataModel.currentFlag else {
+            flagDataModel.currentFlag = Flag(components: [], type: .vertical, parent: flagDataModel.rootFlag)
+            flagDataModel.addComponentToRoot(flagDataModel.currentFlag!)
+            return
+        }
+
+        let newFlag = Flag(components: [], type: .vertical, parent: currentFlag)
+        currentFlag.addComponent(newFlag)
+        flagDataModel.currentFlag = newFlag
+    }
+    
+    func addHorizontalSubsection() {
+        if flagDataModel.isEmpty() {
+            flagDataModel.setOrientation(.vertical)
+            return
+        }
+        
+        guard let currentFlag = flagDataModel.currentFlag else {
+            flagDataModel.currentFlag = Flag(components: [], type: .horizontal, parent: flagDataModel.rootFlag)
+            flagDataModel.addComponentToRoot(flagDataModel.currentFlag!)
+            return
+        }
+
+        let newFlag = Flag(components: [], type: .horizontal, parent: currentFlag)
+        currentFlag.addComponent(newFlag)
+        flagDataModel.currentFlag = newFlag
+    }
+    
+    func commitSection() {
+        guard let currentFlag = flagDataModel.currentFlag else {
+            return
+        }
+        guard let upperParent = currentFlag.parent else {
+            return
+        }
+        flagDataModel.currentFlag = upperParent
     }
 }

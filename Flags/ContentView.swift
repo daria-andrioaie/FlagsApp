@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @StateObject var mainFlagViewModel = FlagViewModel(components: [SimpleStripeComponent(color: .red), SimpleStripeComponent(color: .blue), FlagViewModel(components: [SimpleStripeComponent(color: .orange), SimpleStripeComponent(color: .green)], type: .vertical)], type: .horizontal)
-
-    @StateObject var mainFlagViewModel = FlagViewModel(components: [], type: .vertical)
+    @StateObject var flagViewModel = FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal)))
     
     var body: some View {
         return NavigationView {
             VStack {
-                FlagContainerView(mainFlagViewModel: mainFlagViewModel)
-                ControlsView(mainFlagViewModel: mainFlagViewModel)
+                FlagContainerView(flagViewModel: flagViewModel)
+                    .id(UUID())
+                ControlsView(flagViewModel: flagViewModel)
             }
             .toolbar {
                 Button("Save Flag", action: saveFlag)

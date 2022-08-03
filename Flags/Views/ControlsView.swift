@@ -44,11 +44,8 @@ extension View {
 }
 
 struct ControlsView: View {
-    @ObservedObject var mainFlagViewModel: FlagViewModel
-    @State var currentFlagViewModel: FlagViewModel?
-    @State private var currentColor: Color = .white
-    @State private var currentSymbol: Image?
-    
+    @ObservedObject var flagViewModel: FlagViewModel
+
     var body: some View {
         ZStack {
             Color("LightGray")
@@ -56,7 +53,7 @@ struct ControlsView: View {
                 HStack(spacing: 40) {
                     VStack {
                         Text("Pick color")
-                        ColorPicker("Pick color", selection: $currentColor)
+                        ColorPicker("Pick color", selection: $flagViewModel.currentColor)
                             .labelsHidden()
                             .scaleEffect(CGSize(width: 0.7, height: 0.7))
                             .frame(height: 5)
@@ -72,7 +69,7 @@ struct ControlsView: View {
                 .FlagsFrameStyle()
                 
                 
-                Button("Add Stripe", action: addStripe)
+                Button("Add Stripe", action: flagViewModel.addStripe)
                     .FlagsButtonStyle(backgroundColor: "MermaidBlue")
                     
                 VStack {
@@ -82,14 +79,14 @@ struct ControlsView: View {
                         .foregroundColor(Color("MermaidBlue"))
                     HStack(spacing: 70) {
                         Button {
-                            addVerticalSubsection()
+                            flagViewModel.addVerticalSubsection()
                         } label: {
                             Image("vertical")
                                 .resizable()
                                 .frame(width: 35, height: 35)
                         }
                         Button {
-                            addHorizontalSubsection()
+                            flagViewModel.addHorizontalSubsection()
                         } label: {
                             Image("horizontal")
                                 .resizable()
@@ -99,7 +96,7 @@ struct ControlsView: View {
                 }
                 .FlagsFrameStyle()
                 
-                Button("Commit section", action: commitSection)
+                Button("Commit section", action: flagViewModel.commitSection)
                     .FlagsButtonStyle(backgroundColor: "PoisonGreen")
             }
             .frame(maxWidth: .infinity)
@@ -107,74 +104,10 @@ struct ControlsView: View {
         }
         
     }
-    
-    func addStripe() {
-        var newStripe: Component
-//        // if there is an emblem selected
-//        if let currentSymbol = currentSymbol {
-//            newStripe = AnyView(ZStack {
-//                SimpleStripe(color: currentColor)
-//                currentSymbol
-//            })
-//        }
-//        else {
-//            newStripe = SimpleStripeComponent(color: currentColor)
-//        }
-        
-        newStripe = SimpleStripeComponent(color: currentColor)
-
-        guard let currentFlagViewModel = currentFlagViewModel else {
-            mainFlagViewModel.add(flagComponent: newStripe)
-            return
-        }
-        currentFlagViewModel.add(flagComponent: newStripe)
-    }
-    
-    func addVerticalSubsection() {
-        if mainFlagViewModel.components.isEmpty {
-            mainFlagViewModel.type = .vertical
-            return
-        }
-        
-        guard let currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
-            return
-        }
-
-        let newFlagViewModel = FlagViewModel(components: [], type: .vertical, parent: currentFlagViewModel)
-        currentFlagViewModel.add(flagComponent: newFlagViewModel)
-        self.currentFlagViewModel = newFlagViewModel
-    }
-    
-    func addHorizontalSubsection() {
-        if mainFlagViewModel.components.isEmpty {
-            mainFlagViewModel.type = .horizontal
-            return
-        }
-        
-        guard let currentFlagViewModel = currentFlagViewModel else {
-            currentFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: mainFlagViewModel)
-            mainFlagViewModel.add(flagComponent: currentFlagViewModel!)
-            return
-        }
-
-        let newFlagViewModel = FlagViewModel(components: [], type: .horizontal, parent: currentFlagViewModel)
-        currentFlagViewModel.add(flagComponent: newFlagViewModel)
-        self.currentFlagViewModel = newFlagViewModel
-    }
-    
-    func commitSection() {
-        //currentFlagViewModel = nil
-        guard let currentFlagViewModel = currentFlagViewModel else {
-            return
-        }
-        self.currentFlagViewModel = currentFlagViewModel.parent
-    }
 }
 
 struct ControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        ControlsView(mainFlagViewModel: FlagViewModel(components: [SimpleStripeComponent(color: .red), SimpleStripeComponent(color: .blue), FlagViewModel(components: [SimpleStripeComponent(color: .orange), SimpleStripeComponent(color: .green)], type: .vertical)], type: .horizontal))
+        Color.red
     }
 }

@@ -45,6 +45,7 @@ extension View {
 
 struct ControlsView: View {
     @ObservedObject var flagViewModel: FlagViewModel
+    @State private var symbolPickerPresented = false
 
     var body: some View {
         ZStack {
@@ -60,9 +61,14 @@ struct ControlsView: View {
                     }
                     VStack {
                         Text("Pick emblem")
-                        Button { } label: {
+                        Button {
+                            symbolPickerPresented = true
+                        } label: {
                             Image(systemName: "star.circle")
                                 .foregroundColor(.black)
+                        }
+                        .sheet(isPresented: $symbolPickerPresented) {
+                            EmblemPicker(selectedSymbol: $flagViewModel.currentSymbol)
                         }
                     }
                 }
@@ -108,6 +114,6 @@ struct ControlsView: View {
 
 struct ControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        Color.red
+        ControlsView(flagViewModel: FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal))))
     }
 }

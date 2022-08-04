@@ -12,44 +12,22 @@ import SwiftUI
 class FlagViewModel: ObservableObject {
     @Published var flagDataModel: FlagDataModel
     @Published var currentColor: Color = .white
-    @Published var currentSymbol: Image?
+    @Published var currentSymbol: String = ""
     
     init(flagModel: FlagDataModel) {
         self.flagDataModel = flagModel
     }
     
-    @ViewBuilder
-    func getComponentView(component: Component) -> some View {
-        if let stripeComponent = component as? SimpleStripeComponent {
-            AnyView(stripeComponent.color)
-        }
-        else if let flag = component as? Flag {
-            switch flag.orientation {
-            case .vertical:
-                AnyView(HStack(spacing: 0) {
-                    ForEach(0..<flag.components.count, id: \.self) { index in
-                        self.getComponentView(component: flag.components[index])
-                    }
-                })
-            case .horizontal:
-                AnyView(VStack(spacing: 0) {
-                    ForEach(0..<flag.components.count, id: \.self) { index in
-                        self.getComponentView(component: flag.components[index])
-                    }
-                })
-            }
-        }
-        Text("")
-    }
-    
-    @ViewBuilder
-    func getView() -> some View {
-        getComponentView(component: flagDataModel.rootFlag)
-    }
-    
     func addStripe() {
-        let newStripe = SimpleStripeComponent(color: currentColor)
-
+        let newStripe: Component
+        if currentSymbol != "" {
+            newStripe = StripeWithEmblem(color: currentColor, emblem: currentSymbol)
+            currentSymbol = ""
+        }
+        else {
+            newStripe = SimpleStripe(color: currentColor)
+        }
+        
         guard let currentFlag = flagDataModel.currentFlag else {
             flagDataModel.addComponentToRoot(newStripe)
             objectWillChange.send()
@@ -101,5 +79,9 @@ class FlagViewModel: ObservableObject {
             return
         }
         flagDataModel.currentFlag = upperParent
+    }
+    
+    static func mocked() -> FlagViewModel {
+        return FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [SimpleStripe(color: .blue), StripeWithEmblem(color: .yellow, emblem: "scribble"), SimpleStripe(color: .blue)], type: .horizontal)))
     }
 }

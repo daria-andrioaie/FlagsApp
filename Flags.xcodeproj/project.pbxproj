@@ -19,6 +19,8 @@
 		B8E6D42C288EB952007561CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E6D42B288EB952007561CF /* Assets.xcassets */; };
 		B8E6D42F288EB952007561CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8E6D42E288EB952007561CF /* Preview Assets.xcassets */; };
 		B8E6D436288EBDAA007561CF /* FinlandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6D435288EBDA9007561CF /* FinlandView.swift */; };
+		B8EEC653289BA25000B7236C /* EmblemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEC652289BA25000B7236C /* EmblemPicker.swift */; };
+		B8EEC659289BA8DB00B7236C /* sf-symbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8EEC658289BA8DB00B7236C /* sf-symbols.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		B8E6D42B288EB952007561CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8E6D42E288EB952007561CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8E6D435288EBDA9007561CF /* FinlandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinlandView.swift; sourceTree = "<group>"; };
+		B8EEC652289BA25000B7236C /* EmblemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmblemPicker.swift; sourceTree = "<group>"; };
+		B8EEC658289BA8DB00B7236C /* sf-symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sf-symbols.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 		B8E6D426288EB950007561CF /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				B8EEC657289BA87600B7236C /* Resources */,
+				B8EEC651289BA23A00B7236C /* Utils */,
 				B80260A02898F83500F02BC4 /* Models */,
 				B88DC05B2891675000FDB689 /* ViewModels */,
 				B8F4ECC728911641004CA6E6 /* Views */,
@@ -101,6 +107,22 @@
 				B8E6D42E288EB952007561CF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B8EEC651289BA23A00B7236C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B8EEC652289BA25000B7236C /* EmblemPicker.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B8EEC657289BA87600B7236C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8EEC658289BA8DB00B7236C /* sf-symbols.txt */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B8F4ECC3289115CD004CA6E6 /* Hand-drawn flags */ = {
@@ -183,6 +205,7 @@
 			files = (
 				B8E6D42F288EB952007561CF /* Preview Assets.xcassets in Resources */,
 				B8E6D42C288EB952007561CF /* Assets.xcassets in Resources */,
+				B8EEC659289BA8DB00B7236C /* sf-symbols.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +220,7 @@
 				B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */,
 				B8E6D42A288EB950007561CF /* ContentView.swift in Sources */,
 				B80260A22898F85200F02BC4 /* FlagDataModel.swift in Sources */,
+				B8EEC653289BA25000B7236C /* EmblemPicker.swift in Sources */,
 				B8E6D428288EB950007561CF /* FlagsApp.swift in Sources */,
 				B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */,
 				B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */,

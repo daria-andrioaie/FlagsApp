@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var flagViewModel = FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal)))
+    @StateObject var flagViewModel = FlagViewModel.mocked()
+//    @StateObject var flagViewModel = FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal)))
     
     var body: some View {
         return NavigationView {

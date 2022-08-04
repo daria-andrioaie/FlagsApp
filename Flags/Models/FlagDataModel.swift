@@ -17,11 +17,21 @@ protocol Component {
     
 }
 
-struct SimpleStripeComponent: Component {
+struct SimpleStripe: Component {
     let color: Color
     
     init(color: Color) {
         self.color = color
+    }
+}
+
+struct StripeWithEmblem: Component {
+    let color: Color
+    let emblem: String
+    
+    init(color: Color, emblem: String) {
+        self.color = color
+        self.emblem = emblem
     }
 }
 

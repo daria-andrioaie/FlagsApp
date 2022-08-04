@@ -23,7 +23,7 @@ struct FlagContainerView: View {
             .cornerRadius(5)
             .frame(width: 250, height: 150)
             .background(Color("LightGray"))
-            .padding(30)
+            .padding(40)
     }
 }
 

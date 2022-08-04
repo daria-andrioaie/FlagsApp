@@ -21,6 +21,7 @@
 		B8E6D436288EBDAA007561CF /* FinlandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6D435288EBDA9007561CF /* FinlandView.swift */; };
 		B8EEC653289BA25000B7236C /* EmblemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EEC652289BA25000B7236C /* EmblemPicker.swift */; };
 		B8EEC659289BA8DB00B7236C /* sf-symbols.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8EEC658289BA8DB00B7236C /* sf-symbols.txt */; };
+		B8F62D21289BE9A1002617B0 /* saveExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F62D20289BE9A1002617B0 /* saveExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		B8E6D435288EBDA9007561CF /* FinlandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinlandView.swift; sourceTree = "<group>"; };
 		B8EEC652289BA25000B7236C /* EmblemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmblemPicker.swift; sourceTree = "<group>"; };
 		B8EEC658289BA8DB00B7236C /* sf-symbols.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "sf-symbols.txt"; sourceTree = "<group>"; };
+		B8F62D20289BE9A1002617B0 /* saveExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveExtensions.swift; sourceTree = "<group>"; };
+		B8F62D22289BF0DE002617B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 		B8E6D426288EB950007561CF /* Flags */ = {
 			isa = PBXGroup;
 			children = (
+				B8F62D22289BF0DE002617B0 /* Info.plist */,
 				B8EEC657289BA87600B7236C /* Resources */,
 				B8EEC651289BA23A00B7236C /* Utils */,
 				B80260A02898F83500F02BC4 /* Models */,
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B8EEC652289BA25000B7236C /* EmblemPicker.swift */,
+				B8F62D20289BE9A1002617B0 /* saveExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				B80260A22898F85200F02BC4 /* FlagDataModel.swift in Sources */,
 				B8EEC653289BA25000B7236C /* EmblemPicker.swift in Sources */,
 				B8E6D428288EB950007561CF /* FlagsApp.swift in Sources */,
+				B8F62D21289BE9A1002617B0 /* saveExtensions.swift in Sources */,
 				B89163FC288EC8BD009BF7A0 /* NorwayView.swift in Sources */,
 				B845FC53288FE36500D9A2F8 /* ControlsView.swift in Sources */,
 				B8E6D436288EBDAA007561CF /* FinlandView.swift in Sources */,
@@ -357,6 +363,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Flags/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flags/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The app needs access to your Photo Library to save the flag";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -385,6 +393,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Flags/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Flags/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The app needs access to your Photo Library to save the flag";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

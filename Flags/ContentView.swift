@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var flagViewModel = FlagViewModel.mocked()
-//    @StateObject var flagViewModel = FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal)))
+//    @StateObject var flagViewModel = FlagViewModel.mocked()
+    @StateObject var flagViewModel = FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [], type: .horizontal)))
     
     var body: some View {
         return NavigationView {
@@ -30,7 +30,9 @@ struct ContentView: View {
     }
     
     func saveFlag() {
-        
+        flagViewModel.getView().saveAsImage(width: 250, height: 150) { image in
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        }
     }
 }
 

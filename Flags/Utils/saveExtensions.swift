@@ -13,7 +13,8 @@ extension View {
         let size = CGSize(width: width, height: height)
 
         let controller = UIHostingController(rootView: self.frame(width: width, height: height))
-        controller.view.bounds = CGRect(origin: .zero, size: size)
+//        controller.view.bounds = CGRect(origin: .zero, size: size)
+        controller.view.bounds = CGRect(x: 0, y: 0, width: width, height: height + 45)
 
         let image = controller.view.asImage()
 

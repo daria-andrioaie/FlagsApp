@@ -14,24 +14,32 @@ enum FlagOrientation {
 }
 
 protocol Component {
-    
 }
 
-struct SimpleStripe: Component {
+protocol Stripe: Component {
+    var color: Color { get }
+    var parent: Flag { get set }
+}
+
+struct SimpleStripe: Stripe {
     let color: Color
+    var parent: Flag
     
-    init(color: Color) {
+    init(color: Color, parent:  Flag) {
         self.color = color
+        self.parent = parent
     }
 }
 
-struct StripeWithEmblem: Component {
+struct StripeWithEmblem: Stripe {
     let color: Color
     let emblem: String
+    var parent: Flag
     
-    init(color: Color, emblem: String) {
+    init(color: Color, emblem: String, parent: Flag) {
         self.color = color
         self.emblem = emblem
+        self.parent = parent
     }
 }
 
@@ -58,10 +66,12 @@ class Flag: Component {
 
 struct FlagDataModel {
     var rootFlag: Flag
-    var currentFlag: Flag?
+//    var currentFlag: Flag?
+    var currentFlag: Flag
     
     init(flag: Flag) {
         self.rootFlag = flag
+        self.currentFlag = flag
     }
 
     func addComponentToRoot(_ flagComponent: Component) {

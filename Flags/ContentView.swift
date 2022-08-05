@@ -41,7 +41,8 @@ struct ContentView: View {
     
     func saveFlag() {
         flagViewModel.getView().saveAsImage(width: 250, height: 150) { image in
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            
+            UIImageWriteToSavedPhotosAlbum(UIImage(cgImage: image), nil, nil, nil)
         }
         
 //        let image = flagViewModel.getView().snapshot(width: 250, height: 150)

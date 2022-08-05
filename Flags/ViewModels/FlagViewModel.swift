@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 
+
 class FlagViewModel: ObservableObject {
     @Published var flagDataModel: FlagDataModel
     @Published var currentColor: Color = .white
@@ -21,12 +22,12 @@ class FlagViewModel: ObservableObject {
     @ViewBuilder
     func getComponentView(component: Component) -> some View {
         if let stripeComponent = component as? SimpleStripe {
-            AnyView(stripeComponent.color)
+            AnyView(stripeComponent.color.addOpacityToStripe(stripe: stripeComponent, currentFlag: flagDataModel.currentFlag))
         }
         else if let stripeWithEmblemComponent = component as? StripeWithEmblem {
             AnyView(ZStack {
-                AnyView(stripeWithEmblemComponent.color)
-                AnyView(Image(systemName: stripeWithEmblemComponent.emblem))
+                AnyView(stripeWithEmblemComponent.color.addOpacityToStripe(stripe: stripeWithEmblemComponent, currentFlag: flagDataModel.currentFlag))
+                    AnyView(Image(systemName: stripeWithEmblemComponent.emblem))
             })
         }
         else if let flag = component as? Flag {
@@ -35,13 +36,13 @@ class FlagViewModel: ObservableObject {
                 AnyView(HStack(spacing: 0) {
                     ForEach(0..<flag.components.count, id: \.self) { index in
                         self.getComponentView(component: flag.components[index])
-                    }
+                        }
                 })
             case .horizontal:
                 AnyView(VStack(spacing: 0) {
                     ForEach(0..<flag.components.count, id: \.self) { index in
                         self.getComponentView(component: flag.components[index])
-                    }
+                        }
                 })
             }
         }
@@ -55,19 +56,14 @@ class FlagViewModel: ObservableObject {
     func addStripe() {
         let newStripe: Component
         if currentSymbol != "" {
-            newStripe = StripeWithEmblem(color: currentColor, emblem: currentSymbol)
+            newStripe = StripeWithEmblem(color: currentColor, emblem: currentSymbol, parent: flagDataModel.currentFlag)
             currentSymbol = ""
         }
         else {
-            newStripe = SimpleStripe(color: currentColor)
+            newStripe = SimpleStripe(color: currentColor, parent: flagDataModel.currentFlag)
         }
         
-        guard let currentFlag = flagDataModel.currentFlag else {
-            flagDataModel.addComponentToRoot(newStripe)
-            objectWillChange.send()
-            return
-        }
-        currentFlag.addComponent(newStripe)
+        flagDataModel.currentFlag.addComponent(newStripe)
         objectWillChange.send()
     }
     
@@ -77,14 +73,8 @@ class FlagViewModel: ObservableObject {
             return
         }
         
-        guard let currentFlag = flagDataModel.currentFlag else {
-            flagDataModel.currentFlag = Flag(components: [], type: .vertical, parent: flagDataModel.rootFlag)
-            flagDataModel.addComponentToRoot(flagDataModel.currentFlag!)
-            return
-        }
-
-        let newFlag = Flag(components: [], type: .vertical, parent: currentFlag)
-        currentFlag.addComponent(newFlag)
+        let newFlag = Flag(components: [], type: .vertical, parent: flagDataModel.currentFlag)
+        flagDataModel.currentFlag.addComponent(newFlag)
         flagDataModel.currentFlag = newFlag
     }
     
@@ -94,28 +84,24 @@ class FlagViewModel: ObservableObject {
             return
         }
         
-        guard let currentFlag = flagDataModel.currentFlag else {
-            flagDataModel.currentFlag = Flag(components: [], type: .horizontal, parent: flagDataModel.rootFlag)
-            flagDataModel.addComponentToRoot(flagDataModel.currentFlag!)
-            return
-        }
-
-        let newFlag = Flag(components: [], type: .horizontal, parent: currentFlag)
-        currentFlag.addComponent(newFlag)
+        let newFlag = Flag(components: [], type: .horizontal, parent: flagDataModel.currentFlag)
+        flagDataModel.currentFlag.addComponent(newFlag)
         flagDataModel.currentFlag = newFlag
     }
     
     func commitSection() {
-        guard let currentFlag = flagDataModel.currentFlag else {
-            return
-        }
-        guard let upperParent = currentFlag.parent else {
+        guard let upperParent = flagDataModel.currentFlag.parent else {
             return
         }
         flagDataModel.currentFlag = upperParent
     }
     
     static func mocked() -> FlagViewModel {
-        return FlagViewModel(flagModel: FlagDataModel(flag: Flag(components: [SimpleStripe(color: .blue), StripeWithEmblem(color: .yellow, emblem: "scribble"), SimpleStripe(color: .blue)], type: .horizontal)))
+        let flag = Flag(components: [], type: .horizontal)
+        flag.components.append(SimpleStripe(color: .blue, parent: flag))
+        flag.components.append(StripeWithEmblem(color: .yellow, emblem: "scribble", parent: flag))
+        flag.components.append(SimpleStripe(color: .red, parent: flag))
+        
+        return FlagViewModel(flagModel: FlagDataModel(flag: flag))
     }
 }

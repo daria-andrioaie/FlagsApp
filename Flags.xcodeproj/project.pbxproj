@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B80260A22898F85200F02BC4 /* FlagDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80260A12898F85200F02BC4 /* FlagDataModel.swift */; };
+		B83F179D289D298D003AFC07 /* opacityExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F179C289D298D003AFC07 /* opacityExtension.swift */; };
 		B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */; };
 		B845FC4F288FCD4500D9A2F8 /* SwitzerlandFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */; };
 		B845FC51288FE35400D9A2F8 /* FlagContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		B80260A12898F85200F02BC4 /* FlagDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagDataModel.swift; sourceTree = "<group>"; };
+		B83F179C289D298D003AFC07 /* opacityExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opacityExtension.swift; sourceTree = "<group>"; };
 		B845FC4C288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorwayFlagAbsolute.swift; sourceTree = "<group>"; };
 		B845FC4E288FCD4500D9A2F8 /* SwitzerlandFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitzerlandFlag.swift; sourceTree = "<group>"; };
 		B845FC50288FE35400D9A2F8 /* FlagContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagContainerView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				B8EEC652289BA25000B7236C /* EmblemPicker.swift */,
 				B8F62D20289BE9A1002617B0 /* saveExtensions.swift */,
+				B83F179C289D298D003AFC07 /* opacityExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88DC05D2891682E00FDB689 /* FlagViewModel.swift in Sources */,
+				B83F179D289D298D003AFC07 /* opacityExtension.swift in Sources */,
 				B845FC4D288FBF5000D9A2F8 /* NorwayFlagAbsolute.swift in Sources */,
 				B8E6D42A288EB950007561CF /* ContentView.swift in Sources */,
 				B80260A22898F85200F02BC4 /* FlagDataModel.swift in Sources */,

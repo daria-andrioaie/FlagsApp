@@ -9,16 +9,19 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func saveAsImage(width: CGFloat, height: CGFloat, _ completion: @escaping (UIImage) -> Void) {
-        let size = CGSize(width: width, height: height)
-
+    func saveAsImage(width: CGFloat, height: CGFloat, _ completion: @escaping (CGImage) -> Void) {
+        
         let controller = UIHostingController(rootView: self.frame(width: width, height: height))
-//        controller.view.bounds = CGRect(origin: .zero, size: size)
         controller.view.bounds = CGRect(x: 0, y: 0, width: width, height: height + 45)
 
         let image = controller.view.asImage()
+        
+        let cgImage = image.cgImage!
+        let cropRectangle = CGRect(x: 0, y: 150, width: 3000.0, height: 1500.0)
+        
+        let croppedImage = cgImage.cropping(to: cropRectangle)!
 
-        completion(image)
+        completion(croppedImage)
     }
 }
 
